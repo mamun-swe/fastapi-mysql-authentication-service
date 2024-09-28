@@ -13,4 +13,4 @@ app.include_router(users.router, prefix="/api/v1/users", tags=["users"])
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to FastAPI PQSQL authentication service"}
+    return {"message": "Welcome to FastAPI PgSQL authentication service"}
