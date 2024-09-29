@@ -8,6 +8,7 @@ class CreateUserSchema(BaseModel):
     email: str
     password: str
 
+    # Name validator
     @field_validator("name")
     def validate_name(cls, value):
         if value == "":
@@ -16,6 +17,7 @@ class CreateUserSchema(BaseModel):
             raise ValueError("Name must be at least 3 characters")
         return value
 
+    # Email validator
     @field_validator("email")
     def validate_email(cls, value):
         if value == "":
@@ -26,6 +28,7 @@ class CreateUserSchema(BaseModel):
             raise ValueError("An email address must have an @-sign.")
         return value
 
+    # Password validator
     @field_validator("password")
     def validate_password(cls, value):
         if value == "":
@@ -40,6 +43,7 @@ class UpdateUserSchema(BaseModel):
     name: str
     email: str
 
+    # Name validator
     @field_validator("name")
     def validate_name(cls, value):
         if value == "":
@@ -48,6 +52,7 @@ class UpdateUserSchema(BaseModel):
             raise ValueError("Name must be at least 3 characters")
         return value
 
+    # Email validator
     @field_validator("email")
     def validate_email(cls, value):
         if value == "":
@@ -57,3 +62,13 @@ class UpdateUserSchema(BaseModel):
         if not re.match(email_regex, value):
             raise ValueError("An email address must have an @-sign.")
         return value
+
+
+# Output schema for user
+class ReadUserSchema(BaseModel):
+    id: int
+    name: str
+    email: str
+
+    class Config:
+        from_attributes = True
